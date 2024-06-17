@@ -1,0 +1,526 @@
+-- # SHOW databases;
+-- # Show databases;
+-- # use ineuon;
+
+-- # show tables;
+-- # create database customers;
+
+-- # use customers;
+
+
+-- /* create table customer_info(
+-- id int,
+-- first_name varchar(20),
+-- last_name varchar(10)); */
+
+-- # show tables;
+
+-- # select * from customer_info;
+
+-- */ insert into 
+-- customer_info(id, first_name, last_name) 
+-- values(1,'Krish','Naik');*/
+
+-- # select * from customer_info;
+
+-- # Drop table customer_info;
+
+-- # Drop database customers;
+
+-- # create database customers;
+-- # use customers;
+-- # show tables;
+
+-- # TODO :  Create customer info table inside customers DB 
+
+-- */ create table customer_info(
+-- id int auto_increment,
+-- first_name varchar(25),
+-- last_name varchar(25),
+-- salary int,
+-- primary key(id) 
+-- ); /*
+
+-- # show customer_info;
+
+-- # select * from customer_info;
+
+-- # TODO : INSERT the records into customer_info table
+
+
+--  INSERT INTO customer_info(first_name,last_name,salary)
+--  values
+-- ('John','Daniel',50000),
+--  ('Krish','Naik',60000),
+--  ('Darius','Bengali',70000),
+--  ('Chandan','Kumar',40000),
+-- ('Ankit','Sharma',NULL);
+
+-- select * from customer_info;
+
+# checking NULL values 
+
+-- select * from customer_info 
+-- where salary is null;
+
+-- select * from customer_info 
+-- where salary is not null;
+
+# TODO : Update the NULL record or replace null values 
+
+-- UPDATE customer_info 
+-- SET salary = 50000 
+-- where id = 5;
+
+-- select * from customer_info;
+
+-- TODO SQL ALTER table 
+## Add column in existing table
+
+-- ALTER table customer_info
+-- ADD email varchar(25);
+
+-- update	customer_info 
+-- set email = 'John@example.com' where id = 1;
+
+-- update	customer_info 
+-- set email = 'Krish@example.com' where id = 2;
+
+-- update	customer_info 
+-- set email = 'Darvis@example.com' where id = 3;
+
+-- update	customer_info 
+-- set email = 'Chandan@example.com' where id = 4;
+
+-- update	customer_info 
+-- set email = 'Ankit@example.com' where id = 5;
+
+
+-- select * from customer_info;
+
+
+-- alter table customer_info 
+-- add DOB date ;
+
+-- UPDATE customer_info
+-- SET dob = CASE 
+--     WHEN id = 1 THEN '1980-01-15'  -- John's DOB
+--     WHEN id = 2 THEN '1985-02-20'  -- Krish's DOB
+--     WHEN id = 3 THEN '1990-03-25'  -- Darius's DOB
+--     WHEN id = 4 THEN '1975-04-30'  -- Chandhan's DOB
+--     WHEN id = 5 THEN '1995-05-10'  -- Ankit's DOB
+-- END
+-- WHERE id IN (1, 2, 3, 4, 5);
+
+-- select * from customer_info;
+
+-- use customers;
+-- show tables;
+-- create table student(
+-- id int NOT NULL,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int
+-- );
+
+-- desc student;
+
+-- # set age is not null 
+
+-- Alter table student
+-- modify age int not null;
+
+-- desc student;
+
+-- show tables;
+
+-- CREATE TABLE person (
+--     id INT NOT NULL,
+--     first_name VARCHAR(25) NOT NULL,
+--     last_name VARCHAR(25) NOT NULL,
+--     age INT NOT NULL,
+--     UNIQUE(id)
+-- );
+
+-- desc person;
+
+-- INSERT INTO person (id, first_name, last_name, age) VALUES
+-- (1, 'Krish', 'Patel', 32),
+-- (2, 'Bhima', 'Sharma', 36),
+-- (3, 'Balu', 'Reddy', 29);
+
+-- desc person;
+
+-- alter table person
+-- ADD unique(first_name);
+
+-- desc person;
+
+-- ALTER TABLE person
+-- ADD CONSTRAINT uc_person
+-- UNIQUE (age, first_name);
+
+-- desc person;
+
+-- alter table person
+-- DROP index uc_person;
+
+-- desc person;
+
+-- create table person2(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int,
+-- primary key(id)
+-- );
+
+-- desc person2;
+
+# Create multiple columns as primary key 
+
+-- create table person3(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int,
+-- constraint pk_person3 primary key(id, last_name)
+-- );
+
+-- desc person3;
+
+# After table creating but for got add primary key 
+
+-- create table person4(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(26) not null,
+-- age int
+-- );
+
+# add primary key person4 table 
+
+-- Alter table person4
+-- ADD PRIMARY KEY(id);
+
+-- desc person4;
+
+# two columns make primary key 
+
+-- create table person5(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(26) not null,
+-- age int
+-- );
+
+-- ALTER TABLE person5
+-- ADD CONSTRAINT pk_person5
+-- PRIMARY KEY (last_name, age);
+
+
+## FORGIN KEY 
+
+-- create table person6(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int,
+-- salary int,
+-- primary key(id)
+-- );
+
+-- desc person6;
+
+-- CREATE TABLE department (
+--     id INT NOT NULL,
+--     department_id INT NOT NULL,
+--     department_name VARCHAR(25) NOT NULL,
+--     PRIMARY KEY (department_id),
+--     CONSTRAINT fk_persondepartment FOREIGN KEY (id) REFERENCES person(id)
+-- );
+
+-- desc department;
+
+# you can create foregin key after table creation 
+
+-- create table department1(
+-- id int not null,
+-- department_id int not null,
+-- department_name varchar(25) not null,
+-- primary key(department_id)
+-- );
+
+-- desc department1;
+
+-- # you can add foregin key after creating table 
+
+-- ALTER table department1
+-- ADD foreign key(id) references person6(id);
+
+-- desc department1;
+
+-- show tables;
+
+# -- CHECK constraint 
+
+-- Create table person7(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int,
+-- salary int,
+-- primary key(id),
+-- check(salary < 50000)
+-- );
+
+-- -- Insert record into table 
+-- #when you put record above 50000 you will get error 
+
+-- INSERT INTO PERSON7 
+-- Values(1,'Krish','Naik',32,45000);
+
+-- INSERT INTO PERSON7 
+-- values(2,'Bhimrao','Pawar',36,49000);
+
+-- desc person7;
+
+-- select * from person7;
+
+## Default constraint
+
+-- create table person8(
+-- id int not null,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- city_name varchar(25) DEFAULT 'Bangalore'
+-- );
+
+-- desc person8;
+
+-- create table person9(
+-- id int not null,
+-- first_name varchar(24),
+-- last_name varchar(25),
+-- age int
+-- );
+
+-- desc person9;
+
+-- create index index_age 
+-- on person9(age);
+
+-- desc person9;
+
+-- ## multiple indexex 
+-- CREATE INDEX index_first_name_last_name
+-- ON person9 (first_name, last_name);
+
+-- ## View 
+
+-- create table person10(
+-- person_id int auto_increment,
+-- first_name varchar(25) not null,
+-- last_name varchar(25) not null,
+-- age int,
+-- primary key(person_id)
+-- );
+
+
+-- insert into person10
+-- values
+-- (1,'krish','Naik',32),
+-- (2,'Ram','sharma',34),
+-- (3,'Sam','pawar',39);
+
+
+-- CREATE TABLE department2 (
+--     student_id INT AUTO_INCREMENT,
+--     department_name VARCHAR(25) NOT NULL,
+--     PRIMARY KEY (student_id),
+--     FOREIGN KEY (student_id) REFERENCES person10(person_id)
+-- );
+
+
+-- INSERT INTO department2 (department_name)
+-- VALUES
+-- ('computer science'),
+-- ('Electronics'),
+-- ('Mechanical');
+
+
+-- select * FROM PERSON10;
+-- SELECT * FROM department2;
+
+
+-- SELECT first_name, last_name, age 
+-- FROM person10 
+-- INNER JOIN department2 
+-- ON person10.person_id = department2.student_id;
+
+
+-- ## create view on this query 
+
+-- create view student_info as 
+-- SELECT first_name, last_name, age 
+-- FROM person10 
+-- INNER JOIN department2 
+-- ON person10.person_id = department2.student_id;
+
+
+-- # this is virtual table view 
+-- select * from student_info;
+
+
+-- show tables;
+
+
+-- # INNER JOIN 
+
+-- select* from student;
+
+-- insert into student 
+-- values 
+-- (1,'Krish','Naik',32),
+-- (2,'Ram','Sharma',33),
+-- (3,'Sam','Jeo',34),
+-- (4,'Ankit','Kumar',36),
+-- (5,'Ramesh','Singh',27);
+
+-- Alter table student
+-- Add student_id int auto_increment primary key;
+
+-- select * from student;
+-- drop table student;
+
+-- ALTER TABLE student
+-- DROP COLUMN id;
+
+-- drop table department;
+
+-- CREATE TABLE department (
+--     student_id INT AUTO_INCREMENT,
+--     department_name VARCHAR(25) NOT NULL,
+--     PRIMARY KEY (student_id),
+--     FOREIGN KEY (student_id) REFERENCES student(student_id)
+-- );
+
+-- insert into department 
+-- values
+-- (1,'Computer Science'),
+-- (2,'Electronics'),
+-- (3,'Mechanical');
+
+-- drop table department;
+-- drop table student;
+
+
+## Join 
+#  1 . INNER JOIN 
+
+-- CREATE TABLE student (
+--     student_id INT AUTO_INCREMENT PRIMARY KEY,
+--     first_name VARCHAR(25) NOT NULL,
+--     last_name VARCHAR(25) NOT NULL,
+--     age INT
+-- );
+
+
+-- insert into student 
+-- values 
+-- (1,'Krish','Naik',32),
+-- (2,'Ram','Sharma',33),
+-- (3,'Sam','Jeo',34),
+-- (4,'Ankit','Kumar',36),
+-- (5,'Ramesh','Singh',27);
+
+
+-- CREATE TABLE department (
+--     student_id INT AUTO_INCREMENT,
+--     department_name VARCHAR(25) NOT NULL,
+--     PRIMARY KEY (student_id),
+--     FOREIGN KEY (student_id) REFERENCES student(student_id)
+-- );
+
+-- insert into department 
+-- values
+-- (1,'Computer Science'),
+-- (2,'Electronics'),
+-- (3,'Mechanical');
+
+
+-- ## inner join 
+
+-- SELECT student.first_name, student.last_name, student.age,
+--        department.department_name
+-- FROM student
+-- INNER JOIN department
+-- ON student.student_id = department.student_id;
+
+-- ## Left Join 
+
+-- SELECT student.first_name, student.last_name, student.age,
+--        department.department_name
+-- FROM student
+-- left join department
+-- ON student.student_id = department.student_id;
+
+-- ## Right join 
+
+-- SELECT student.first_name, student.last_name, student.age,
+--        department.department_name
+-- FROM student
+-- right join department
+-- ON student.student_id = department.student_id;
+
+-- # Full JOIN 
+
+-- SELECT student.first_name, student.last_name, student.age,
+--        department.department_name
+-- FROM student
+-- left join department
+-- ON student.student_id = department.student_id;
+-- UNION 
+-- SELECT student.first_name, student.last_name, student.age,
+--        department.department_name
+-- FROM student
+-- right join department
+-- ON student.student_id = department.student_id;
+
+-- Create company DB 
+-- create Employee table with Empid,first_name, last_name, salary,DOJ ,Department 
+-- Create Bonus table with Empid Bonus Date , Bonus Amount 
+-- Create Designation table with Empid Designation Designation_Date 
+
+
+# 1 Create DB Company 
+
+CREATE DATABASE Company;
+use company;
+
+-- 2 Create Employee table 
+
+Create table Employee(
+Empid int auto_increment,
+first_name varchar(25) not null,
+last_name varchar(25) not null,
+DOJ datetime,
+Department varchar(25),
+primary key(Empid)
+);
+
+-- 3 Bonus table 
+create table Bonus(
+Empid int auto_increment,
+Bonus_Date datetime ,
+Bonus_amount int,
+foreign key(Empid) references Employee(Empid)
+);
+
+-- 4 Create Designation table 
+create table Employee_Designation(
+Empid int auto_increment,
+Designation varchar(25) not null,
+Designation_date datetime,
+foreign key(Empid) references Employee (Empid)
+);
